@@ -1,0 +1,46 @@
+import pojos.Patient
+
+
+
+rule "IO_r1"
+   dialect "java"
+    when
+      p : Patient(abdominal_pain == true)
+    then
+      p.calculatePunctuationIntObs(16);
+end
+rule "IO_r2"
+   dialect "java"
+    when
+      p : Patient(reduced_appetite == true)
+    then
+      p.calculatePunctuationIntObs(20);
+end
+rule "IO_r3"
+   dialect "java"
+    when
+      p : Patient(constipation == true)
+    then
+      p.calculatePunctuationIntObs(16);
+end
+rule "IO_r4"
+   dialect "java"
+    when
+      p : Patient(nausea_vomiting == true)
+    then
+      p.calculatePunctuationIntObs(16);
+end
+rule "IO_r5"
+   dialect "java"
+    when
+      p : Patient(bloating == true)
+    then
+      p.calculatePunctuationIntObs(16);
+end
+rule "IO_r6"
+   dialect "java"
+    when
+      p : Patient(abdomen_swelling == true)
+    then
+      p.calculatePunctuationIntObs(16);
+end

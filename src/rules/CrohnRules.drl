@@ -1,0 +1,74 @@
+import pojos.Patient
+
+
+
+rule "CR_r1"
+   dialect "java"
+    when
+      p : Patient(fever == true)
+    then
+      p.calculatePunctuationCrohn(5);
+end
+rule "CR_r2"
+   dialect "java"
+    when
+      p : Patient(diarrhea == true)
+    then
+      p.calculatePunctuationCrohn(15);
+end
+rule "CR_r3"
+   dialect "java"
+    when
+      p : Patient(fatigue == true)
+    then
+      p.calculatePunctuationCrohn(5);
+end
+rule "CR_r4"
+   dialect "java"
+    when
+      p : Patient(abdominal_pain == true)
+    then
+      p.calculatePunctuationCrohn(15);
+end
+rule "CR_r5"
+   dialect "java"
+    when
+      p : Patient(blood_in_stool == true)
+    then
+      p.calculatePunctuationCrohn(10);
+end
+rule "CR_r6"
+   dialect "java"
+    when
+      p : Patient(mouth_sores == true)
+    then
+      p.calculatePunctuationCrohn(10);
+end
+rule "CR_r7"
+   dialect "java"
+    when
+      p : Patient(reduced_appetite == true)
+    then
+      p.calculatePunctuationCrohn(10);
+end
+rule "CR_r8"
+   dialect "java"
+    when
+      p : Patient(weight_loss == true)
+    then
+      p.calculatePunctuationCrohn(10);
+end
+rule "CR_r9"
+   dialect "java"
+    when
+      p : Patient(nausea_vomiting == true)
+    then
+      p.calculatePunctuationCrohn(15);
+end
+rule "CR_r10"
+   dialect "java"
+    when
+      p : Patient(anemia == true)
+    then
+      p.calculatePunctuationCrohn(5);
+end

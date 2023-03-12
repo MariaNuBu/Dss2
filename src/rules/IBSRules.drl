@@ -1,0 +1,57 @@
+import pojos.Patient
+
+rule "IBS_r1"
+   dialect "java"
+    when
+      p : Patient(diarrhea == true)
+  then
+      p.calculatePunctuationIBS(14);
+end
+
+rule "IBS_r2"
+   dialect "java"
+    when
+      p : Patient(abdominal_pain == true)
+    then
+      p.calculatePunctuationIBS(14);
+end
+
+rule "IBS_r3"
+   dialect "java"
+    when
+      p : Patient(constipation == true)
+    then
+      p.calculatePunctuationIBS(14);
+end
+
+rule "IBS_r4"
+   dialect "java"
+    when
+      p : Patient(abdomen_swelling == true)
+    then
+      p.calculatePunctuationIBS(14);
+end
+
+rule "IBS_r5"
+   dialect "java"
+    when
+      p : Patient(flatulence == true)
+    then
+      p.calculatePunctuationIBS(14);
+end
+
+rule "IBS_r6"
+   dialect "java"
+    when
+      p : Patient(fatigue == true)
+    then
+      p.calculatePunctuationIBS(14);
+end
+
+rule "IBS_r7"
+   dialect "java"
+    when
+      p : Patient(heartburn == true)
+    then
+      p.calculatePunctuationIBS(14);
+end

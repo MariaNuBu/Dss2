@@ -1,0 +1,53 @@
+import pojos.Patient
+
+
+
+rule "CE_r1"
+   dialect "java"
+    when
+      p : Patient(diarrhea == true)
+    then
+      p.calculatePunctuationCeliac(14);
+end
+rule "CE_r2"
+   dialect "java"
+    when
+      p : Patient(fatigue == true)
+    then
+      p.calculatePunctuationCeliac(16);
+end
+rule "CE_r3"
+   dialect "java"
+    when
+      p : Patient(weight_loss == true)
+    then
+      p.calculatePunctuationCeliac(14);
+end
+rule "CE_r4"
+   dialect "java"
+    when
+      p : Patient(bloating == true)
+    then
+      p.calculatePunctuationCeliac(14);
+end
+rule "CE_r5"
+   dialect "java"
+    when
+      p : Patient(abdominal_pain == true)
+    then
+      p.calculatePunctuationCeliac(14);
+end
+rule "CE_r6"
+   dialect "java"
+    when
+      p : Patient(nausea_vomiting == true)
+    then
+      p.calculatePunctuationCeliac(14);
+end
+rule "CE_r7"
+   dialect "java"
+    when
+      p : Patient(constipation == true)
+    then
+      p.calculatePunctuationCeliac(14);
+end
