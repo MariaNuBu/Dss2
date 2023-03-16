@@ -8,8 +8,9 @@ import pojos.Patient;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import db.sqlite.SQLiteManager;
-import db.interfaces.DBManager;
+import dbPackage.*;
+import java.io.File;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.persistence.NoResultException;
@@ -22,22 +23,20 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    private static DBManager db;
+    public static DBManager conector;
     
     public static void main(String[] args) {
-        
-        db= new SQLiteManager();
-        db.connect();
-        db.createTables();
-        
+    
+        DBCreation db = new DBCreation();
+        dbCheck dbCheck = new dbCheck(db.getConector());
         KieServices ks = KieServices.Factory.get();
         KieContainer kc = ks.getKieClasspathContainer();
         
         KieSession ksession = kc.newKieSession("IntestinalDiseasesKS");
         
-        register();
+        register(dbCheck);
         
-        Patient p = logIn();
+        Patient p = logIn(dbCheck);
         /*
         Patient p = askSymptoms();
         
@@ -55,6 +54,22 @@ public class Main {
         */       
 
     }
+    public void initDB()
+    {
+        this.conector = new Conector();
+        File url = new File ("./Database/Credentials.db");
+        if(!url.exists())
+        {
+            this.conector.connect();
+            DBCreation.createDB(conector);
+        }
+        else
+        {
+            this.conector.connect();
+        }
+
+    }
+    
     public static boolean getValue(String answer)
     {
         if (answer.contentEquals("yes"))
@@ -67,7 +82,7 @@ public class Main {
         }
     }
     
-    public static Patient logIn()
+    public static Patient logIn(dbCheck dbCheck)
     {
         System.out.println("Introduce your username");
         String username = DataObtention.readLine();
@@ -76,7 +91,7 @@ public class Main {
         Patient p = null;
         try
         {
-            p = db.checkPassword(username, pass);
+            p = dbCheck.checkPassword(username, pass);
         }
         catch(NoResultException e)
         {
@@ -85,7 +100,7 @@ public class Main {
         return p;//aqui habria que en vez de devolver patient llevar al menu de seleccion de sintomas
     }
     
-    public static void register() 
+    public static void register(dbCheck dbCheck) 
     {
         System.out.println("Introduce your username");
         String username = DataObtention.readLine();
@@ -102,7 +117,7 @@ public class Main {
         }
         md.update(password.getBytes());
         byte [] pass=md.digest();        
-        db.createUser(username, pass);
+        dbCheck.createUser(username, pass);
         //y aqui ya mandarle al menu como en el otro
         System.out.println("Registered succesfully");
         
